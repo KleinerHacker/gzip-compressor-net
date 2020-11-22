@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 
 namespace GZipCompressor.Types
@@ -12,6 +13,12 @@ namespace GZipCompressor.Types
         public DirectoryTarget(string targetDirectory)
         {
             TargetDirectory = targetDirectory;
+            if (!Directory.Exists(targetDirectory))
+            {
+                Directory.CreateDirectory(TargetDirectory);
+            }
+            if (!File.GetAttributes(targetDirectory).HasFlag(FileAttributes.Directory))
+                throw new InvalidOperationException("Target directory is a file: " + targetDirectory);
         }
 
         public DirectoryTarget(DirectoryInfo targetDirectory)

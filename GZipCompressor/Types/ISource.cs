@@ -13,6 +13,10 @@ namespace GZipCompressor.Types
     public interface ISource
     {
         /// <summary>
+        /// Root directory the <see cref="Files"/> are contained
+        /// </summary>
+        string RootDirectory { get; }
+        /// <summary>
         /// Source Files
         /// </summary>
         string[] Files { get; }

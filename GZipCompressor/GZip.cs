@@ -22,24 +22,24 @@ namespace GZipCompressor
         
         public static void Compress(ISource source, Stream stream, CompressionLevel level = CompressionLevel.Optimal)
         {
-            Compressor.Compress(source.Files, stream, level);
+            Compressor.Compress(source.RootDirectory, source.Files, stream, level);
         }
 
-        public static void Decompress(ITarget target, FileInfo file, CompressionLevel level = CompressionLevel.Optimal)
+        public static void Decompress(ITarget target, FileInfo file, CompressionLevel level = CompressionLevel.Optimal, bool overwrite = true)
         {
             using var stream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read);
-            Decompress(target, stream, level);
+            Decompress(target, stream, level, overwrite);
         }
 
-        public static void Decompress(ITarget target, byte[] data, CompressionLevel level = CompressionLevel.Optimal)
+        public static void Decompress(ITarget target, byte[] data, CompressionLevel level = CompressionLevel.Optimal, bool overwrite = true)
         {
             using var stream = new MemoryStream(data);
-            Decompress(target, stream, level);
+            Decompress(target, stream, level, overwrite);
         }
 
-        public static void Decompress(ITarget target, Stream stream, CompressionLevel level = CompressionLevel.Optimal)
+        public static void Decompress(ITarget target, Stream stream, CompressionLevel level = CompressionLevel.Optimal, bool overwrite = true)
         {
-            Decompressor.Decompress(target.TargetDirectory, stream, level);
+            Decompressor.Decompress(target.TargetDirectory, stream, level, overwrite);
         }
     }
 }

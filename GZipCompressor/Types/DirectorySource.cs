@@ -9,10 +9,12 @@ namespace GZipCompressor.Types
     /// </summary>
     public sealed class DirectorySource : ISource
     {
+        public string RootDirectory { get; }
         public string[] Files { get; }
 
         public DirectorySource(string directory, string pattern = "*", bool recursive = true)
         {
+            RootDirectory = directory;
             Files = Directory.EnumerateFiles(directory, pattern, recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly).ToArray();
         }
 
