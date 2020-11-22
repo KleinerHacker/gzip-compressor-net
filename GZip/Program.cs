@@ -43,7 +43,7 @@ namespace GZip
 
         private static int HandleCompress(string sourceFileOrDirectory, string targetFile, Options options)
         {
-            if (!File.Exists(sourceFileOrDirectory))
+            if (!File.Exists(sourceFileOrDirectory) && !Directory.Exists(sourceFileOrDirectory))
             {
                 Console.Error.WriteLine("No such file or directory: " + sourceFileOrDirectory);
                 Console.WriteLine();
@@ -59,7 +59,7 @@ namespace GZip
                 return -1;
             }
 
-            if (File.GetAttributes(targetFile).HasFlag(FileAttribute.Directory))
+            if (File.Exists(targetFile) && File.GetAttributes(targetFile).HasFlag(FileAttributes.Directory))
             {
                 Console.Error.WriteLine("Target file is a directory: " + targetFile);
                 Console.WriteLine();
@@ -69,7 +69,7 @@ namespace GZip
 
             ISource source;
             var fileAttributes = File.GetAttributes(sourceFileOrDirectory);
-            if (fileAttributes.HasFlag(FileAttribute.Directory))
+            if (fileAttributes.HasFlag(FileAttributes.Directory))
             {
                 source = new DirectorySource(sourceFileOrDirectory, options.SearchPattern, options.IsRecursive);
             }
@@ -108,7 +108,7 @@ namespace GZip
                 Directory.CreateDirectory(targetDirectory);
             }
 
-            if (!File.GetAttributes(targetDirectory).HasFlag(FileAttribute.Directory))
+            if (!File.GetAttributes(targetDirectory).HasFlag(FileAttributes.Directory))
             {
                 Console.Error.WriteLine("Target directory is a file: " + targetDirectory);
                 Console.WriteLine();

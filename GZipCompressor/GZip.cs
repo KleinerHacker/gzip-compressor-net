@@ -10,7 +10,7 @@ namespace GZipCompressor
     {
         public static void Compress(ISource source, FileInfo file, CompressionLevel level = CompressionLevel.Optimal)
         {
-            using var stream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read);
+            using var stream = new FileStream(file.FullName, FileMode.Create, FileAccess.Write);
             Compress(source, stream, level);
         }
         
