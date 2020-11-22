@@ -118,7 +118,7 @@ namespace GZip
 
             try
             {
-                GZipCompressor.GZip.Decompress(new DirectoryTarget(targetDirectory), new FileInfo(sourceFile), options.CompressionLevel, options.IsOverwriting);
+                GZipCompressor.GZip.Decompress(new DirectoryTarget(targetDirectory), new FileInfo(sourceFile), options.IsOverwriting);
             }
             catch (Exception e)
             {
@@ -225,7 +225,7 @@ namespace GZip
             Console.WriteLine("Compress  : gzip -c my_dir my_file.gzip");
             Console.WriteLine("Compress  : gzip -c my_dir my_file.gzip -r -p *.txt,*.dat -c fast");
             Console.WriteLine("Decompress: gzip -d my_gzip_file my_dir");
-            Console.WriteLine("Decompress: gzip -d my_gzip_file my_dir -o -c fast");
+            Console.WriteLine("Decompress: gzip -d my_gzip_file my_dir -o");
             Console.WriteLine();
         }
     }

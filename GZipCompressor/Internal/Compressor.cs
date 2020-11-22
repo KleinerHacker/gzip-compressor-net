@@ -1,5 +1,6 @@
 using System.IO;
 using System.IO.Compression;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace GZipCompressor.Internal
